@@ -1,8 +1,6 @@
 #include "lib\SparkFun_LIS331.h"
 #include <Arduino.h>
 
-#define ENABLE_WATCHDOG
-
 // See melty_config.h for configuration parameters
 
 #include "rc_handler.h"
