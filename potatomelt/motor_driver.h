@@ -1,4 +1,4 @@
-//intitialize motors
+// intitialize motors
 void init_motors();
 
 // Motors on!
@@ -14,5 +14,5 @@ void configure_motors(int config_code);
 // And a conversion function to go from perK to the dshot code
 int perk2dshot(int throttle_perk);
 
-//motors shut-down (robot not translating)
+// motors shut-down (robot not translating)
 void motors_off();
