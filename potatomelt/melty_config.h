@@ -23,8 +23,8 @@
 //----------SPIN CONTROL SETTINGS----------
 // "DEFAULT" values are overriden by interactive config / stored in EEPROM (interactive config will be easier if they are about correct)
 // To force these values to take effect after interactive config - increment EEPROM_WRITTEN_SENTINEL_VALUE
-#define DEFAULT_ACCEL_MOUNT_RADIUS_CM 2.91 // Radius of accelerometer from center of robot
-#define DEFAULT_LED_OFFSET_PERCENT 57	   // Adjust to make heading LED line up with direction robot travels 0-99 (increasing moves beacon clockwise)
+#define DEFAULT_ACCEL_MOUNT_RADIUS_CM 70 // Radius of accelerometer from center of robot
+#define DEFAULT_LED_OFFSET_PERCENT 57	 // Adjust to make heading LED line up with direction robot travels 0-99 (increasing moves beacon clockwise)
 
 #define DEFAULT_ACCEL_ZERO_G_OFFSET 0.0f // Value accelerometer returns with robot at rest (in G) - adjusts for any offset
 										 // H3LIS331 claims +/-1g DC offset - typical - but +/-2.5 has been observed at +/-400g setting (enough to cause tracking error)
@@ -50,7 +50,7 @@
 // On an Atmega32, pins 0 and 1 (rx and tx) map to Serial1
 // So that's where the receiver needs to be wired up
 
-#define HEADING_LED_PIN 13 // To heading LED (pin 13 is on-board Arduino LED)
+#define HEADING_LED_PIN 16 // To heading LED (pin 13 is on-board Arduino LED)
 
 // no configuration changes are needed if only 1 motor is used!
 #define MOTOR_PIN1 9  // Pin for Motor 1 driver
@@ -59,8 +59,8 @@
 #define BATTERY_ADC_PIN A0 // Pin for battery monitor (if enabled)
 
 //----------BATTERY MONITOR----------
-#define BATTERY_ALERT_ENABLED					  // if enabled - heading LED will flicker when battery voltage is low
-#define BATTERY_CRIT_HALT_ENABLED				  // if enabled - robot will halt when battery voltage is critically low
+// #define BATTERY_ALERT_ENABLED				  // if enabled - heading LED will flicker when battery voltage is low
+// #define BATTERY_CRIT_HALT_ENABLED			  // if enabled - robot will halt when battery voltage is critically low
 #define VOLTAGE_DIVIDER 11						  // (~10:1 works well - 10kohm to GND, 100kohm to Bat+).  Resistors have tolerances!  Adjust as needed...
 #define BATTERY_CELL_COUNT 3					  // How many cells are in the battery? This will multiply the thresholds
 #define BATTERY_ADC_WARN_VOLTAGE_THRESHOLD 3.75f  // If voltage per cell drops below this value - then alert is triggered
@@ -70,10 +70,10 @@
 #define LOW_BAT_REPEAT_READS_BEFORE_ALARM 20	  // Requires this many ADC reads below threshold before alarming
 
 //----------SAFETY----------
-#define ENABLE_WATCHDOG				   // Uses Adafruit's sleepdog to enable watchdog / reset (tested on AVR - should work for ARM https://github.com/adafruit/Adafruit_SleepyDog)
+// #define ENABLE_WATCHDOG			   // Uses Adafruit's sleepdog to enable watchdog / reset (tested on AVR - should work for ARM https://github.com/adafruit/Adafruit_SleepyDog)
 #define WATCH_DOG_TIMEOUT_MS 2000	   // Timeout value for watchdog (not all values are supported - 2000ms verified with Arudino Micro)
 #define CONTROL_MOTION_TIMEOUT_MS 3000 // Timeout value for stick motion / loss of signal - backup failsafe system in case the rx doesn't failsafe correctly
-// #define VERIFY_RC_THROTTLE_ZERO_AT_BOOT           //Requires RC throttle be 0% at boot to allow spin-up for duration of MAX_MS_BETWEEN_RC_UPDATES (about 1 second)
+// #define VERIFY_RC_THROTTLE_ZERO_AT_BOOT	//Requires RC throttle be 0% at boot to allow spin-up for duration of MAX_MS_BETWEEN_RC_UPDATES (about 1 second)
 // Intended as safety feature to prevent bot from spinning up at power-on if RC was inadvertently left on.
 // Downside is if unexpected reboot occurs during a fight - driver will need to set throttle to zero before power
 
