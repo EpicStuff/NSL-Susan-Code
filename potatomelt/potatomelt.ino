@@ -1,4 +1,4 @@
-#include "lib\SparkFun_LIS331.h"
+#include "lib/SparkFun_LIS331.h"
 #include <Arduino.h>
 
 // See melty_config.h for configuration parameters
@@ -17,7 +17,7 @@
 #endif
 
 #ifdef ENABLE_WATCHDOG
-#include "lib\Adafruit_SleepyDog.h"
+#include "lib/Adafruit_SleepyDog.h"
 #endif
 
 void service_watchdog()

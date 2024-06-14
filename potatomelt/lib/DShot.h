@@ -20,20 +20,23 @@
 #define DSHOT_PORT PORTB
 #endif
 
-class DShot{
-  public:
-    enum Mode {
-      DSHOT600,
-      DSHOT300,
-      DSHOT150
-    };
-    DShot(const enum Mode mode);
-    void attach(uint8_t pin);
-    uint16_t setThrottle(uint16_t throttle);
-  private:
-    uint16_t _packet = 0;
-    uint16_t _throttle = 0;
-    uint8_t _pinMask = 0;
+class DShot
+{
+public:
+	enum Mode
+	{
+		DSHOT600,
+		DSHOT300,
+		DSHOT150
+	};
+	DShot(const enum Mode mode);
+	void attach(uint8_t pin);
+	uint16_t setThrottle(uint16_t throttle);
+
+private:
+	uint16_t _packet = 0;
+	uint16_t _throttle = 0;
+	uint8_t _pinMask = 0;
 };
 
 #endif

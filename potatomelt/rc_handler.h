@@ -69,7 +69,7 @@ float rc_get_trans_trim();
 // (does not need to be perfect)
 #define NOMINAL_PULSE_RANGE (MAX_RC_PULSE_LENGTH - MIN_RC_PULSE_LENGTH)
 
-#define IDLE_THROTTLE_PULSE_LENGTH 988	   // pulses below this value are considered 0% throttle
+#define IDLE_THROTTLE_PULSE_LENGTH 1000	   // pulses below this value are considered 0% throttle, originally 988
 #define FULL_THROTTLE_PULSE_LENGTH 2012	   // pulses above this value are considered 100%
 #define CENTER_LEFTRIGHT_PULSE_LENGTH 1500 // center value for left / right
 #define CENTER_FORBACK_PULSE_LENGTH 1500   // center value for for / back

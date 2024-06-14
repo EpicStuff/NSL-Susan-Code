@@ -12,7 +12,7 @@
 #include "battery_monitor.h"
 
 #ifdef USE_PID_THROTTLE_CONTROL
-#include "lib\PID_v1.h"
+#include "lib/PID_v1.h"
 #endif
 
 #define ACCEL_MOUNT_RADIUS_MINIMUM_CM 0.2			   // Never allow interactive config to set below this value

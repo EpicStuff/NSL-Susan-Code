@@ -1,5 +1,5 @@
 {
-    "board": "arduino:avr:micro",
-    "sketch": "potatomelt\\potatomelt.ino",
-    "output": ".build"
+	"board": "arduino:avr:micro",
+	"sketch": "potatomelt\\potatomelt.ino",
+	"output": ".build"
 }

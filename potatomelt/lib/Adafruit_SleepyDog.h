@@ -16,8 +16,8 @@ typedef WatchdogAVR WatchdogType;
 // Arduino Zero / ATSAMD series CPU watchdog support.
 #include "utility/WatchdogSAMD.h"
 typedef WatchdogSAMD WatchdogType;
-#elif defined(__MK20DX128__) || defined(__MK20DX256__) ||                      \
-    defined(__MK64FX512__) || defined(__MK66FX1M0__)
+#elif defined(__MK20DX128__) || defined(__MK20DX256__) || \
+	defined(__MK64FX512__) || defined(__MK66FX1M0__)
 // Teensy 3.x watchdog support.
 #include "utility/WatchdogKinetisK.h"
 typedef WatchdogKinetisKseries WatchdogType;
