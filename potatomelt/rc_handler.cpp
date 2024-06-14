@@ -1,6 +1,6 @@
 // This module handles the RC interface (interrupt driven)
 #include <Arduino.h>
-#include "lib/IBusBM.h"
+#include "IBusBM.h"
 
 #include "rc_handler.h"
 #include "melty_config.h"

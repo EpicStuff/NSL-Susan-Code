@@ -17,7 +17,7 @@
 #include "accel_handler.h"
 #include "config_storage.h"
 #include <Wire.h>
-#include "lib/SparkFun_LIS331.h"
+#include "SparkFun_LIS331.h"
 
 LIS331 xl;
 

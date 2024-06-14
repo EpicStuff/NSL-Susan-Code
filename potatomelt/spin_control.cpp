@@ -12,7 +12,7 @@
 #include "battery_monitor.h"
 
 #ifdef USE_PID_THROTTLE_CONTROL
-#include "lib/PID_v1.h"
+#include "PID_v1.h"
 #endif
 
 #define ACCEL_MOUNT_RADIUS_MINIMUM_CM 0.2			   // Never allow interactive config to set below this value
@@ -259,7 +259,7 @@ static void get_melty_parameters(melty_parameters_t *melty_parameters)
 	}
 
 	// LED width changes with RPM
-	float led_on_portion = pid_current_rpm / MAX_TARGET_RPM;
+	float led_on_portion = pid_current_rpm / MAX_TARGET_RPM / 2;
 	if (led_on_portion < 0.10f)
 		led_on_portion = 0.10f;
 	if (led_on_portion > 0.90f)
