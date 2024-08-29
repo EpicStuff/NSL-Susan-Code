@@ -163,6 +163,7 @@ static void check_config_mode()
 			while (rc_get_forback_bit() == RC_FORBACK_BACKWARD)
 			{
 				service_watchdog();
+				delay(1) // nesseary for the code to not just crash
 			}
 		}
 	}
