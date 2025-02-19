@@ -95,7 +95,6 @@ void setup()
 // dumps out diagnostics info
 static void echo_diagnostics()
 {
-
 	Serial.print("Raw Accel G: ");
 	Serial.print(get_accel_force_g());
 	Serial.print("  RC Health: ");
@@ -118,6 +117,9 @@ static void echo_diagnostics()
 	Serial.print("  Zero G Offset: ");
 	Serial.print(load_accel_zero_g_offset());
 #endif
+
+	Serial.print("  Config Mode: ");
+	Serial.print(get_config_mode());
 	Serial.println("");
 }
 
@@ -163,7 +165,7 @@ static void check_config_mode()
 			while (rc_get_forback_bit() == RC_FORBACK_BACKWARD)
 			{
 				service_watchdog();
-				delay(1) // nesseary for the code to not just crash
+				delay(1); // nesseary for the code to not just crash
 			}
 		}
 	}

@@ -239,8 +239,14 @@ static void get_melty_parameters(melty_parameters_t *melty_parameters)
 	{
 		bool save = rc_get_accel_save();
 
+		// Serial.print("tmp: saving, isSaving: ");
+		// Serial.print(isSaving);
+		// Serial.print(", save: ");
+		// Serial.println(save);
+
 		if (!isSaving && save)
 		{
+			Serial.println("Saving accel correction point");
 			set_correction_factor(pid_current_rpm, local_accel_correction_factor);
 		}
 

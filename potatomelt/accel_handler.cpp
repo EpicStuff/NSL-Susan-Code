@@ -173,6 +173,7 @@ void clear_correction_table()
 {
 	for (int i = 0; i < 16; i++)
 	{
+		Serial.println("Clearing correction table");
 		correction_lookup_table[i] = 0;
 	}
 

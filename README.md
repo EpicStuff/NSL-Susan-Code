@@ -15,7 +15,7 @@ My development hardware:
 ## Configuration
 
 ### Entering config mode
-At rest, hold the right stick back for 1s to enter config mode. Once you release the stick, the LED will change from a single fast blink to a double blink to indicate that it's in config mode.
+At rest, hold the right stick back for 3s to enter config mode. Once you release the stick, the LED will change from a single fast blink to a double blink to indicate that it's in config mode.
 
 It is important to enter config mode while the bot is at rest- it snapshots the current accelerometer state to get a 0 point when it enters config mode, so if it's moving or spinning, that zero point will be wrong
 
@@ -37,4 +37,4 @@ At a stable RPM in config mode:
 - Repeat until the LED and the bot direction agree
 
 ### Exiting config mode
-Spin the bot down to zero, and then hold the right stick back for 1s again to exit config mode. The LED will return to a fast blink when you release the stick.
+Spin the bot down to zero, and then hold the right stick back for 3s again to exit config mode. The LED will return to a fast blink when you release the stick.
