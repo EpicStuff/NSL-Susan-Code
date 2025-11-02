@@ -79,7 +79,7 @@ int load_correction_table(float *table)
 
 void save_correction_table(float *table, int length)
 {
-
+	
 	for (int i = 0; i < 16; i++)
 	{
 		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;

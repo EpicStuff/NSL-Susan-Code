@@ -239,6 +239,8 @@ static void handle_battery_crit()
 // main control loop
 void loop()
 {
+	echo_diagnostics();
+
 
 	// keep the watchdog happy
 	service_watchdog();
