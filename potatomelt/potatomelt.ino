@@ -28,6 +28,8 @@ void service_watchdog() {
 #endif
 }
 
+IBusBM IBus;
+
 // loops until a good RC signal is detected and throttle is zero (assures safe
 // start)
 static void wait_for_rc_good_and_zero_throttle() {
@@ -243,6 +245,7 @@ static void handle_battery_crit() {
 // main control loop
 void loop() {
   echo_diagnostics();
+  Serial.print("Control check sum: ");
   Serial.println(IBus.readChannel(0) * 64 + IBus.readChannel(1) * 16 +
                  IBus.readChannel(2) * 4 + IBus.readChannel(3));
   // keep the watchdog happy
