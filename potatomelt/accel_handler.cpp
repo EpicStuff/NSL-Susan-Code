@@ -181,6 +181,11 @@ void clear_correction_table()
 	ring_buffer_position = 0;
 }
 
+void save_correction_parameters()
+{
+	save_correction_table(correction_lookup_table, correction_table_length);
+}
+
 // Sort the lookup table and store it in EEPROM for future use
 void save_parameters()
 {

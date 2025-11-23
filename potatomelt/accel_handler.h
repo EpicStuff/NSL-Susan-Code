@@ -33,6 +33,9 @@ void clear_correction_table();
 // If the lookup table is full, evict existing entries one by one
 void evict_record();
 
+// Save the current correction lookup table to persistent storage
+void save_correction_parameters();
+
 // Save accelerometer and correction params for future use
 void save_parameters();
 

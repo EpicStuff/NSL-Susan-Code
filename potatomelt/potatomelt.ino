@@ -42,19 +42,28 @@ static void wait_for_rc_good_and_zero_throttle()
 
 		// services watchdog and echo diagnostics while we are waiting for RC signal
 		service_watchdog();
-		// echo_diagnostics();
 	}
 }
 
 // Arduino initial setup function
 void setup()
 {
-
 	Serial.begin(115200);
+
+	// Sleep to give time to open serial monitor
+	for (int seconds_left = 10; seconds_left > 0; --seconds_left)
+	{
+		Serial.print("Start Delay: ");
+		Serial.println(seconds_left);
+		delay(1000); // Sleep for 1 second
+	}
 
 	// get motor drivers setup (and off!) first thing
 	init_motors();
+	Serial.println("Motors initialized");
 	init_led();
+	Serial.println("LEDs initialized");
+	delay(1000);
 
 #ifdef ENABLE_WATCHDOG
 	// returns actual watchdog timeout MS
@@ -120,8 +129,6 @@ static void echo_diagnostics()
 
 	Serial.print("  Config Mode: ");
 	Serial.print(get_config_mode());
-	Serial.print(" accel save: ");
-	Serial.print(rc_get_accel_save());
 	Serial.println("");
 }
 
@@ -160,9 +167,13 @@ static void check_config_mode()
 		if (rc_get_forback_bit() == RC_FORBACK_BACKWARD)
 		{
 			toggle_config_mode();
+
+			// save melty settings on config mode exit
 			if (get_config_mode() == false)
-				save_melty_config_settings(); // save melty settings on config mode exit
-				save_correction_table(correction_lookup_table) 
+			{
+				save_melty_config_settings();
+				save_correction_parameters();
+			}
 
 			// wait for user to release stick - so we don't re-toggle modes
 			while (rc_get_forback_bit() == RC_FORBACK_BACKWARD)
@@ -189,9 +200,8 @@ static void check_accel_config_clear()
 // handles the bot when not spinning (with RC good)
 static void handle_bot_idle()
 {
-
+	Serial.println("Bot is idle");
 	disable_spin(); // assure motors are off
-
 	// normal LED "fast flash" - indicates RC signal is good while sitting idle
 	heading_led_on(0);
 	delay(30);
@@ -209,11 +219,12 @@ static void handle_bot_idle()
 		delay(140);
 	}
 
+	Serial.println("Checking config mode");
 	check_config_mode(); // check if user requests we enter / exit config mode
+	Serial.println("Checking accel config clear");
 	check_accel_config_clear();
+	Serial.println("Displaying RPM if requested");
 	display_rpm_if_requested(); // flashed out RPM if user has requested
-
-	// echo_diagnostics(); // echo diagnostics if bot is idle
 }
 
 static void handle_battery_crit()
@@ -244,10 +255,8 @@ void loop()
 {
 	echo_diagnostics();
 
-
 	// keep the watchdog happy
 	service_watchdog();
-	echo_diagnostics();
 
 #ifdef BATTERY_CRIT_HALT_ENABLED
 	if (battery_voltage_crit())
@@ -261,15 +270,13 @@ void loop()
 	// this will interrupt a spun-up bot if the signal becomes bad
 	if (rc_signal_is_healthy() == false)
 	{
+		Serial.println("RC signal not healthy - disabling spin");
 		disable_spin();
 
 		heading_led_on(0);
 		delay(30);
 		heading_led_off();
 		delay(600);
-
-		// echo diagnostics while we are waiting for RC signal
-		echo_diagnostics();
 
 		// And then bail
 		return;
@@ -279,6 +286,7 @@ void loop()
 	// If we're in tank mode, go drive like a tank!
 	if (rc_get_tank_mode())
 	{
+		Serial.println("Tank mode active");
 		disable_spin();
 		handle_tank_mode();
 		return;

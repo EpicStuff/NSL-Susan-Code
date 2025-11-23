@@ -10,7 +10,7 @@ IBusBM IBus;
 unsigned long control_checksum;
 unsigned long last_changed_at;
 
-bool rc_signal_is_healthy()
+bool rc_signal_is_healthy() // Note: only works after controller is connected
 {
 	unsigned long new_checksum = compute_checksum();
 	unsigned long now = millis();
