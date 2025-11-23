@@ -74,16 +74,20 @@ int load_correction_table(float *table)
 	{
 		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;
 		table[i] = EEPROM.get(addr, table[i]);
+		Serial.print(table[i]);
+		Serial.print("\nLoadCorrectionTable\n");
 	}
 }
 
-void save_correction_table(float *table, int length)
+void save_correction_table(float *table)  // deleted int length argument 
 {
-	
+
 	for (int i = 0; i < 16; i++)
 	{
 		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;
 		EEPROM.write(addr, table[i]);
+		Serial.print(table[i]);
+		Serial.print("\nSaveCorrectionTable\n");
 	}
 }
 

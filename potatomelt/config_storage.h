@@ -5,7 +5,7 @@
 // retrieves the accelerometer correction table from EEPROM
 int load_correction_table(float *table);
 
-void save_correction_table(float *table, int);
+void save_correction_table(float *table);
 
 // retrieves zero G offset from EEPROM
 float load_accel_zero_g_offset();
