@@ -72,7 +72,7 @@ float rc_get_trans_trim();
 #define IDLE_THROTTLE_PULSE_LENGTH 1000	   // pulses below this value are considered 0% throttle, originally 988
 #define FULL_THROTTLE_PULSE_LENGTH 2012	   // pulses above this value are considered 100%
 #define CENTER_LEFTRIGHT_PULSE_LENGTH 1500 // center value for left / right
-#define CENTER_FORBACK_PULSE_LENGTH 1500   // center value for for / back
+#define CENTER_FORBACK_PULSE_LENGTH 1498   // center value for for / back
 
 #define FORBACK_MIN_THRESH_PULSE_LENGTH 100 // pulse length must differ by this much from CENTER_FORBACK_PULSE_LENGTH to be considered going forward or back
 

@@ -79,11 +79,11 @@ int load_correction_table(float *table)
 		return 14;
 	}
 
-	int len = EEPROM.read(EEPROM_RPM_CORRECTION_LENGTH_LOC);
+	uint8_t len = EEPROM.read(EEPROM_RPM_CORRECTION_LENGTH_LOC);
 
 	for (int i = 0; i < 16; i++)
 	{
-		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;
+		int addr = (EEPROM_RPM_CORRECTION_BYTE1_LOC + i) * 4;
 		table[i] = EEPROM.get(addr, table[i]);
 		Serial.print("\nLoadCorrectionTable: ");
 		Serial.print(table[i]);
@@ -97,8 +97,8 @@ void save_correction_table(float *table) // deleted int length argument
 	Serial.println("saving correction table");
 	for (int i = 0; i < 16; i++)
 	{
-		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;
-		EEPROM.write(addr, table[i]);
+		int addr = (EEPROM_RPM_CORRECTION_BYTE1_LOC + i) * 4;
+		EEPROM.put(addr, table[i]);
 		Serial.print("\nSaveCorrectionTable: ");
 		Serial.print(table[i]);
 		Serial.print(", address: ");
@@ -132,7 +132,7 @@ float load_accel_zero_g_offset()
 
 void save_accel_zero_g_offset(float offset)
 {
-	EEPROM.write(EEPROM_ACCEL_OFFSET_BYTE1_LOC, offset);
+	EEPROM.put(EEPROM_ACCEL_OFFSET_BYTE1_LOC, offset);
 }
 
 float load_accel_mount_radius()
