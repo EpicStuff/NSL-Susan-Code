@@ -162,6 +162,7 @@ static void check_config_mode()
 			toggle_config_mode();
 			if (get_config_mode() == false)
 				save_melty_config_settings(); // save melty settings on config mode exit
+				save_correction_table(correction_lookup_table) 
 
 			// wait for user to release stick - so we don't re-toggle modes
 			while (rc_get_forback_bit() == RC_FORBACK_BACKWARD)
@@ -241,6 +242,8 @@ static void handle_battery_crit()
 // main control loop
 void loop()
 {
+	echo_diagnostics();
+
 
 	// keep the watchdog happy
 	service_watchdog();
