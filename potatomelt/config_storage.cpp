@@ -59,12 +59,15 @@ static int check_sentinel()
 
 int load_correction_table(float *table)
 {
+	Serial.println("loading correction table");
 	if (check_sentinel() != 1)
 	{
+		Serial.println("no correction table found - using defaults");
 		for (int i = 0; i < 16; i++)
 		{
 			table[i] = 0;
 		}
+		save_correction_table(table); // save default empty table
 		return 14;
 	}
 
@@ -87,8 +90,9 @@ void save_correction_table(float *table) // deleted int length argument
 		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;
 		EEPROM.write(addr, table[i]);
 		Serial.print(table[i]);
-		Serial.print("\nSaveCorrectionTable\n");
+		Serial.print("\nSaveCorrectionTable: ");
 	}
+	Serial.println("");
 }
 
 int load_heading_led_offset()

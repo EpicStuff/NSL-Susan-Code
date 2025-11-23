@@ -183,7 +183,7 @@ void clear_correction_table()
 
 void save_correction_parameters()
 {
-	save_correction_table(correction_lookup_table, correction_table_length);
+	save_correction_table(correction_lookup_table);
 }
 
 // Sort the lookup table and store it in EEPROM for future use
