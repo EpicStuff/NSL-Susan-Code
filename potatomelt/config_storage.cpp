@@ -42,6 +42,7 @@
 // indicates values saved to EEPROM (doing 2x)
 static void eeprom_write_sentinel()
 {
+	Serial.println("writing sentinel");
 	EEPROM.write(EEPROM_WRITTEN_SENTINEL_BYTE1_LOC, EEPROM_WRITTEN_SENTINEL1_VALUE);
 	EEPROM.write(EEPROM_WRITTEN_SENTINEL_BYTE2_LOC, EEPROM_WRITTEN_SENTINEL2_VALUE);
 }
@@ -50,6 +51,7 @@ static void eeprom_write_sentinel()
 // if EEPROM_WRITTEN_SENTINEL_VALUE is changed - will cause EEPROM values to invalidate / use default values
 static int check_sentinel()
 {
+	Serial.println("checking sentinel");
 	int byte1Val = EEPROM.read(EEPROM_WRITTEN_SENTINEL_BYTE1_LOC);
 	int byte2Val = EEPROM.read(EEPROM_WRITTEN_SENTINEL_BYTE2_LOC);
 	Serial.print("SENTINEL1_VALUE: ");
@@ -57,10 +59,12 @@ static int check_sentinel()
 	Serial.print("SENTINEL2_VALUE: ");
 	Serial.println(byte2Val);
 
-	if (byte1Val != EEPROM_WRITTEN_SENTINEL1_VALUE) {
+	if (byte1Val != EEPROM_WRITTEN_SENTINEL1_VALUE)
+	{
 		return 0;
 	}
-	if (byte2Val != EEPROM_WRITTEN_SENTINEL2_VALUE) {
+	if (byte2Val != EEPROM_WRITTEN_SENTINEL2_VALUE)
+	{
 		return 0;
 	}
 	return 1;
@@ -77,6 +81,7 @@ int load_correction_table(float *table)
 			table[i] = 0;
 		}
 		save_correction_table(table); // save default empty table
+		eeprom_write_sentinel();
 		return 14;
 	}
 
