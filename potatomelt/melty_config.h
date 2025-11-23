@@ -13,7 +13,7 @@
 
 //----------EEPROM----------
 #define ENABLE_EEPROM_STORAGE			 // Comment out this to disable EEPROM (for ARM)
-#define EEPROM_WRITTEN_SENTINEL_VALUE 02 // Changing this value will cause existing EEPROM values to be invalidated (revert to defaults)
+#define EEPROM_WRITTEN_SENTINEL_VALUE (byte)02 // Changing this value will cause existing EEPROM values to be invalidated (revert to defaults)
 
 //----------FEATURES---------
 #define ENABLE_TANK_MODE		 // Toggleable tank-mode driving (useful for positioning the bot in the box pre-spinup)

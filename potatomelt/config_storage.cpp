@@ -52,14 +52,15 @@ static int check_sentinel()
 {
 	int byte1Val = EEPROM.read(EEPROM_WRITTEN_SENTINEL_BYTE1_LOC);
 	int byte2Val = EEPROM.read(EEPROM_WRITTEN_SENTINEL_BYTE2_LOC);
+	Serial.print("SENTINEL1_VALUE: ");
+	Serial.println(byte1Val);
+	Serial.print("SENTINEL2_VALUE: ");
+	Serial.println(byte2Val);
+
 	if (byte1Val != EEPROM_WRITTEN_SENTINEL1_VALUE) {
-		Serial.print("SENTINEL1_VALUE: ");
-		Serial.println(byte1Val);
 		return 0;
 	}
 	if (byte2Val != EEPROM_WRITTEN_SENTINEL2_VALUE) {
-		Serial.print("SENTINEL2_VALUE: ");
-		Serial.println(byte2Val);
 		return 0;
 	}
 	return 1;
