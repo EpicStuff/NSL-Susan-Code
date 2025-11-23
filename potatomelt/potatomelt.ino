@@ -42,7 +42,7 @@ static void wait_for_rc_good_and_zero_throttle()
 
 		// services watchdog and echo diagnostics while we are waiting for RC signal
 		service_watchdog();
-		echo_diagnostics();
+		// echo_diagnostics();
 	}
 }
 
@@ -120,6 +120,8 @@ static void echo_diagnostics()
 
 	Serial.print("  Config Mode: ");
 	Serial.print(get_config_mode());
+	Serial.print(" accel save: ");
+	Serial.print(rc_get_accel_save());
 	Serial.println("");
 }
 
@@ -210,7 +212,7 @@ static void handle_bot_idle()
 	check_accel_config_clear();
 	display_rpm_if_requested(); // flashed out RPM if user has requested
 
-	echo_diagnostics(); // echo diagnostics if bot is idle
+	// echo_diagnostics(); // echo diagnostics if bot is idle
 }
 
 static void handle_battery_crit()
@@ -233,7 +235,7 @@ static void handle_battery_crit()
 
 	delay(600);
 	service_watchdog();
-	echo_diagnostics();
+	// echo_diagnostics();
 }
 
 // main control loop
@@ -242,6 +244,7 @@ void loop()
 
 	// keep the watchdog happy
 	service_watchdog();
+	echo_diagnostics();
 
 #ifdef BATTERY_CRIT_HALT_ENABLED
 	if (battery_voltage_crit())

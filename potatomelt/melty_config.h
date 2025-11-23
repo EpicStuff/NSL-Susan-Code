@@ -13,17 +13,17 @@
 
 //----------EEPROM----------
 #define ENABLE_EEPROM_STORAGE			 // Comment out this to disable EEPROM (for ARM)
-#define EEPROM_WRITTEN_SENTINEL_VALUE 04 // Changing this value will cause existing EEPROM values to be invalidated (revert to defaults)
+#define EEPROM_WRITTEN_SENTINEL_VALUE 01 // Changing this value will cause existing EEPROM values to be invalidated (revert to defaults)
 
 //----------FEATURES---------
-#define ENABLE_TANK_MODE // Toggleable tank-mode driving (useful for positioning the bot in the box pre-spinup)
-// #define USE_PID_THROTTLE_CONTROL // Use a PID to control RPM, rather than running the throttle directly into the motor power
-#define USE_TRANSLATION_TRIM // Use a control channel to trim the translation algorithm - useful if you have the spare knob
+#define ENABLE_TANK_MODE		 // Toggleable tank-mode driving (useful for positioning the bot in the box pre-spinup)
+#define USE_PID_THROTTLE_CONTROL // Use a PID to control RPM, rather than running the throttle directly into the motor power
+#define USE_TRANSLATION_TRIM	 // Use a control channel to trim the translation algorithm - useful if you have the spare knob
 
 //----------SPIN CONTROL SETTINGS----------
 // "DEFAULT" values are overriden by interactive config / stored in EEPROM (interactive config will be easier if they are about correct)
 // To force these values to take effect after interactive config - increment EEPROM_WRITTEN_SENTINEL_VALUE
-#define DEFAULT_ACCEL_MOUNT_RADIUS_CM 7.3 // Radius of accelerometer from center of robot
+#define DEFAULT_ACCEL_MOUNT_RADIUS_CM 7.4 // Radius of accelerometer from center of robot
 #define DEFAULT_LED_OFFSET_PERCENT 180	  // Adjust to make heading LED line up with direction robot travels 0-99 (increasing moves beacon clockwise)
 
 #define DEFAULT_ACCEL_ZERO_G_OFFSET 0.0f // Value accelerometer returns with robot at rest (in G) - adjusts for any offset
@@ -37,14 +37,14 @@
 //-----------PID tuning--------------
 // Tuning PIDs is an art. See: https://pidexplained.com/how-to-tune-a-pid-controller/
 
-#define PID_KP 1.0 // Proportional Gain - higher values give more sensitivity, lower values give more stability
-#define PID_KI 0.4 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
-#define PID_KD 0.0 // Derivative - useful to prevent overshoot of target value.
+#define PID_KP 0.3 // Proportional Gain - higher values give more sensitivity, lower values give more stability
+#define PID_KI 0.1 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
+#define PID_KD 0.1 // Derivative - useful to prevent overshoot of target value.
 
 //------------TRANSLATIONAL DRIFT SETTINGS-----------
 #define LEFT_RIGHT_HEADING_CONTROL_DIVISOR 2.0f // How quick steering is (larger values = slower)
 
-#define MIN_TRANSLATION_RPM 400 // full power spin in below this number (increasing can reduce spin-up time)
+#define MIN_TRANSLATION_RPM 400 // full power spi	n in below this number (increasing can reduce spin-up time)
 
 //----------PIN MAPPINGS----------
 // On an Atmega32, pins 0 and 1 (rx and tx) map to Serial1

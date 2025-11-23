@@ -265,11 +265,11 @@ static void get_melty_parameters(melty_parameters_t *melty_parameters)
 	}
 
 	// LED width changes with RPM
-	float led_on_portion = pid_current_rpm / MAX_TARGET_RPM / 2;
-	if (led_on_portion < 0.10f)
-		led_on_portion = 0.10f;
-	if (led_on_portion > 0.90f)
-		led_on_portion = 0.90f;
+	float led_on_portion = pid_current_rpm / MAX_TARGET_RPM / 8; // Note: Change last value to change led on portion/percentage
+	if (led_on_portion < 0.01f)
+		led_on_portion = 0.01f;
+	if (led_on_portion > 0.50f)
+		led_on_portion = 0.50f;
 
 	unsigned long led_on_us = led_on_portion * melty_parameters->rotation_interval_us;
 	unsigned long led_offset_us = led_offset_portion * melty_parameters->rotation_interval_us;

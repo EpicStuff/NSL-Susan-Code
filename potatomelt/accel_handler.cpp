@@ -184,6 +184,7 @@ void clear_correction_table()
 // Sort the lookup table and store it in EEPROM for future use
 void save_parameters()
 {
+	Serial.println("saving parameters");
 	save_accel_zero_g_offset(accel_zero_g_offset);
 	save_correction_table(correction_lookup_table, correction_table_length);
 	eeprom_write_sentinel();

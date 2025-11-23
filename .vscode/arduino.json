@@ -1,6 +1,6 @@
 {
     "board": "arduino:avr:micro",
     "sketch": "potatomelt/potatomelt.ino",
-	"output": ".build",
+    "output": ".build",
     "port": "/dev/ttyACM0"
 }
