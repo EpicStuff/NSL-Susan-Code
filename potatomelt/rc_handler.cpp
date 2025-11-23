@@ -115,3 +115,8 @@ unsigned long compute_checksum() {
   return IBus.readChannel(0) * 64 + IBus.readChannel(1) * 16 +
          IBus.readChannel(2) * 4 + IBus.readChannel(3);
 }
+
+void print_receiver() {
+  Serial.print("Receiver: ");
+  Serial.println(compute_checksum());
+}

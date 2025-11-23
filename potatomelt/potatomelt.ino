@@ -245,9 +245,7 @@ static void handle_battery_crit() {
 // main control loop
 void loop() {
   echo_diagnostics();
-  Serial.print("Control check sum: ");
-  Serial.println(IBus.readChannel(0) * 64 + IBus.readChannel(1) * 16 +
-                 IBus.readChannel(2) * 4 + IBus.readChannel(3));
+  print_receiver();
   // keep the watchdog happy
   service_watchdog();
 
