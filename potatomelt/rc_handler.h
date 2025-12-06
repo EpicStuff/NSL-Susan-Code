@@ -50,8 +50,8 @@ float rc_get_trans_trim();
 #define RC_CHANNEL_FORBACK 1  // Translate forwards or backwards - usually forwards-backwards on the right stick
 #define RC_CHANNEL_THROTTLE 2 // Spin RPM - usually forwards-backwards on the left stick
 // reserved                                 // RC channel 3 is reserved for future sideways translation
-#define RC_CHANNEL_TANKMODE 5		   // Tank mode switch - usually a switch, <0 for melty mode, >0 for tank mode
-#define RC_CHANNEL_ACCEL_OFFSET_SAVE 4 // Button for saving an accelerometer offset in config mode - <0 normally, >0 when pressed
+#define RC_CHANNEL_TANKMODE 4		   // Tank mode switch - usually a switch, <0 for melty mode, >0 for tank mode
+#define RC_CHANNEL_ACCEL_OFFSET_SAVE 5 // Button for saving an accelerometer offset in config mode - <0 normally, >0 when pressed
 #define RC_CHANNEL_SPIN_DIR 6		   // Spin direction switch - runs motors forwards when >0, backwards when <0. Does not adjust heading LED offsets - useful when ESCs are wired backwards
 #define RC_CHANNEL_TRANSLATION_TRIM 7  // Translate power trim - Usually a knob, more trim = robot will try harder to translate while spinning.
 
@@ -69,12 +69,12 @@ float rc_get_trans_trim();
 // (does not need to be perfect)
 #define NOMINAL_PULSE_RANGE (MAX_RC_PULSE_LENGTH - MIN_RC_PULSE_LENGTH)
 
-#define IDLE_THROTTLE_PULSE_LENGTH 1000	   // pulses below this value are considered 0% throttle, originally 988
+#define IDLE_THROTTLE_PULSE_LENGTH 1005	   // pulses below this value are considered 0% throttle, originally 988
 #define FULL_THROTTLE_PULSE_LENGTH 2012	   // pulses above this value are considered 100%
 #define CENTER_LEFTRIGHT_PULSE_LENGTH 1500 // center value for left / right
-#define CENTER_FORBACK_PULSE_LENGTH 1498   // center value for for / back
+#define CENTER_FORBACK_PULSE_LENGTH 1503   // center value for for / back
 
 #define FORBACK_MIN_THRESH_PULSE_LENGTH 100 // pulse length must differ by this much from CENTER_FORBACK_PULSE_LENGTH to be considered going forward or back
 
 #define LR_CONFIG_MODE_DEADZONE_WIDTH 100 // deadzone for LR when in config mode (in US) - prevents unintended tracking adjustments
-#define LR_NORMAL_DEADZONE_WIDTH 25		  // deadzone for normal drive - can help with unintentional drift when moving forward / back
+#define LR_NORMAL_DEADZONE_WIDTH 50		  // deadzone for normal drive - can help with unintentional drift when moving forward / back

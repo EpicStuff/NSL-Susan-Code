@@ -51,7 +51,7 @@ void setup()
 	Serial.begin(115200);
 
 	// Sleep to give time to open serial monitor
-	for (int seconds_left = 10; seconds_left > 0; --seconds_left)
+	for (int seconds_left = 5; seconds_left > 0; --seconds_left)
 	{
 		Serial.print("Start Delay: ");
 		Serial.println(seconds_left);
@@ -120,12 +120,12 @@ static void echo_diagnostics()
 	Serial.print(get_battery_voltage());
 #endif
 
-#ifdef ENABLE_EEPROM_STORAGE
-	Serial.print("  Heading Offset: ");
-	Serial.print(load_heading_led_offset());
-	Serial.print("  Zero G Offset: ");
-	Serial.print(load_accel_zero_g_offset());
-#endif
+	// #ifdef ENABLE_EEPROM_STORAGE
+	// 	Serial.print("  Heading Offset: ");
+	// 	Serial.print(load_heading_led_offset());
+	// 	Serial.print("  Zero G Offset: ");
+	// 	Serial.print(load_accel_zero_g_offset());
+	// #endif
 
 	Serial.print("  Config Mode: ");
 	Serial.print(get_config_mode());
@@ -200,7 +200,7 @@ static void check_accel_config_clear()
 // handles the bot when not spinning (with RC good)
 static void handle_bot_idle()
 {
-	Serial.println("Bot is idle");
+	// Serial.println("Bot is idle");
 	disable_spin(); // assure motors are off
 	// normal LED "fast flash" - indicates RC signal is good while sitting idle
 	heading_led_on(0);
@@ -219,11 +219,11 @@ static void handle_bot_idle()
 		delay(140);
 	}
 
-	Serial.println("Checking config mode");
+	// Serial.println("Checking config mode");
 	check_config_mode(); // check if user requests we enter / exit config mode
-	Serial.println("Checking accel config clear");
+	// Serial.println("Checking accel config clear");
 	check_accel_config_clear();
-	Serial.println("Displaying RPM if requested");
+	// Serial.println("Displaying RPM if requested");
 	display_rpm_if_requested(); // flashed out RPM if user has requested
 }
 
