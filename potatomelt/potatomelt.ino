@@ -51,7 +51,7 @@ void setup()
 	Serial.begin(115200);
 
 	// Sleep to give time to open serial monitor
-	for (int seconds_left = 5; seconds_left > 0; --seconds_left)
+	for (int seconds_left = START_DELAY; seconds_left > 0; --seconds_left)
 	{
 		Serial.print("Start Delay: ");
 		Serial.println(seconds_left);
