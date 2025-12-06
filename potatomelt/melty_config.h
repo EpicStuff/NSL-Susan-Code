@@ -51,7 +51,7 @@
 // So that's where the receiver needs to be wired up
 
 #define HEADING_LED_PIN 30 // To heading LED (pin 13 is on-board Arduino LED)
-#define HEADING_LED_PIN2 17
+#define HEADING_LED_PIN2 16
 
 // no configuration changes are needed if only 1 motor is used!
 #define MOTOR_PIN1 9  // Pin for Motor 1 driver
