@@ -3,7 +3,7 @@
 
 void init_led(void)
 {
-	pinMode(HEADING_LED_PIN, OUTPUT);
+	pinMode(HEADING_LED_PIN0, OUTPUT);
 	pinMode(HEADING_LED_PIN2, OUTPUT);
 }
 
@@ -14,25 +14,25 @@ void heading_led_on(int shimmer)
 	{
 		if (micros() & (1 << 10))
 		{
-			digitalWrite(HEADING_LED_PIN, HIGH);
+			digitalWrite(HEADING_LED_PIN0, LOW);
 			digitalWrite(HEADING_LED_PIN2, HIGH);
 		}
 		else
 		{
-			digitalWrite(HEADING_LED_PIN, LOW);
+			digitalWrite(HEADING_LED_PIN0, HIGH);
 			digitalWrite(HEADING_LED_PIN2, LOW);
 		}
 	}
 	else
 	{
 		// just turn LED on
-		digitalWrite(HEADING_LED_PIN, HIGH);
+		digitalWrite(HEADING_LED_PIN0, LOW);
 		digitalWrite(HEADING_LED_PIN2, HIGH);
 	}
 }
 
 void heading_led_off()
 {
-	digitalWrite(HEADING_LED_PIN, LOW);
+	digitalWrite(HEADING_LED_PIN0, HIGH);
 	digitalWrite(HEADING_LED_PIN2, LOW);
 }
