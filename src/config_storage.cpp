@@ -118,6 +118,8 @@ int load_heading_led_offset()
 	// if value hasn't been saved previously - return the default
 	if (check_sentinel() != 1)
 		return DEFAULT_LED_OFFSET_PERCENT;
+	Serial.print("Led offset loaded: ");
+	Serial.println(EEPROM.read(EEPROM_HEADING_LED_LOC));
 	return EEPROM.read(EEPROM_HEADING_LED_LOC);
 }
 

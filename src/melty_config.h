@@ -10,7 +10,7 @@
 
 //----------DIAGNOSTICS----------
 // #define JUST_DO_DIAGNOSTIC_LOOP        			// Disables the robot / just displays config / battery voltage / RC info via serial
-#define START_DELAY 1								// start delay
+#define START_DELAY 5 // start delay
 
 //----------EEPROM----------
 #define ENABLE_EEPROM_STORAGE				   // Comment out this to disable EEPROM (for ARM)
@@ -39,7 +39,7 @@
 // Tuning PIDs is an art. See: https://pidexplained.com/how-to-tune-a-pid-controller/
 
 #define PID_KP 0.3 // Proportional Gain - higher values give more sensitivity, lower values give more stability
-#define PID_KI 0.1 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
+#define PID_KI 0.2 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
 #define PID_KD 0.1 // Derivative - useful to prevent overshoot of target value.
 
 //------------TRANSLATIONAL DRIFT SETTINGS-----------

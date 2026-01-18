@@ -141,7 +141,7 @@ static void get_rotation_interval_us(melty_parameters_t *melty_parameters)
 	if (rpm > highest_rpm || highest_rpm == 0)
 		highest_rpm = rpm;
 
-	pid_current_rpm = rpm;  // change pid rpm to the now corrected rpm
+	pid_current_rpm = rpm; // change pid rpm to the now corrected rpm
 
 	// And apply steering correction
 	// don't adjust steering if disabled by config mode - or we are in RC deadzone
