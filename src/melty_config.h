@@ -10,7 +10,7 @@
 
 //----------DIAGNOSTICS----------
 // #define JUST_DO_DIAGNOSTIC_LOOP        			// Disables the robot / just displays config / battery voltage / RC info via serial
-#define START_DELAY 5 // start delay
+#define START_DELAY 10 // start delay
 
 //----------EEPROM----------
 #define ENABLE_EEPROM_STORAGE				   // Comment out this to disable EEPROM (for ARM)
