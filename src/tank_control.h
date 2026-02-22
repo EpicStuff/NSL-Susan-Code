@@ -1,6 +1,11 @@
 // Tank controls!
 
-#define TANK_FORBACK_POWER_SCALE 0.16f; // We're just going to scale inputs down, because we're sitting on a pair of ungeared brushless motors
-#define TANK_TURNING_POWER_SCALE 0.16f; // And we're doubly going to turn down rotation, because this bot was built to spin
+#define TANK_FORBACK_POWER_SCALE \
+  0.16f  // We're just going to scale inputs down, because we're sitting on a
+         // pair of ungeared brushless motors
+#define TANK_TURNING_POWER_SCALE \
+  0.16f  // And we're doubly going to turn down rotation, because this bot was
+         // built to spin
+#define TANK_SPIN_THRESHOLD 5  // Forward/back deadzone for spin-in-place
 
 void handle_tank_mode();
