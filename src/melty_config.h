@@ -9,11 +9,12 @@
 // 490Hz PWM-throttle behavior is specific to Atmega32u4 (see below)
 
 //----------DIAGNOSTICS----------
-// #define JUST_DO_DIAGNOSTIC_LOOP                 // Disables the robot / just displays config / battery voltage / RC info via serial
+// #define JUST_DO_DIAGNOSTIC_LOOP        			// Disables the robot / just displays config / battery voltage / RC info via serial
+#define START_DELAY 10 // start delay
 
 //----------EEPROM----------
-#define ENABLE_EEPROM_STORAGE			 // Comment out this to disable EEPROM (for ARM)
-#define EEPROM_WRITTEN_SENTINEL_VALUE 02 // Changing this value will cause existing EEPROM values to be invalidated (revert to defaults)
+#define ENABLE_EEPROM_STORAGE				   // Comment out this to disable EEPROM (for ARM)
+#define EEPROM_WRITTEN_SENTINEL_VALUE (byte)02 // Changing this value will cause existing EEPROM values to be invalidated (revert to defaults)
 
 //----------FEATURES---------
 #define ENABLE_TANK_MODE		 // Toggleable tank-mode driving (useful for positioning the bot in the box pre-spinup)
@@ -23,8 +24,8 @@
 //----------SPIN CONTROL SETTINGS----------
 // "DEFAULT" values are overriden by interactive config / stored in EEPROM (interactive config will be easier if they are about correct)
 // To force these values to take effect after interactive config - increment EEPROM_WRITTEN_SENTINEL_VALUE
-#define DEFAULT_ACCEL_MOUNT_RADIUS_CM 7.4 // Radius of accelerometer from center of robot
-#define DEFAULT_LED_OFFSET_PERCENT 180	  // Adjust to make heading LED line up with direction robot travels 0-99 (increasing moves beacon clockwise)
+#define DEFAULT_ACCEL_MOUNT_RADIUS_CM 6 // Radius of accelerometer from center of robot
+#define DEFAULT_LED_OFFSET_PERCENT 0	// Adjust to make heading LED line up with direction robot travels 0-99 (increasing moves beacon clockwise)
 
 #define DEFAULT_ACCEL_ZERO_G_OFFSET 0.0f // Value accelerometer returns with robot at rest (in G) - adjusts for any offset
 										 // H3LIS331 claims +/-1g DC offset - typical - but +/-2.5 has been observed at +/-400g setting (enough to cause tracking error)
@@ -38,7 +39,7 @@
 // Tuning PIDs is an art. See: https://pidexplained.com/how-to-tune-a-pid-controller/
 
 #define PID_KP 0.3 // Proportional Gain - higher values give more sensitivity, lower values give more stability
-#define PID_KI 0.1 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
+#define PID_KI 0.2 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
 #define PID_KD 0.1 // Derivative - useful to prevent overshoot of target value.
 
 //------------TRANSLATIONAL DRIFT SETTINGS-----------
@@ -50,7 +51,9 @@
 // On an Atmega32, pins 0 and 1 (rx and tx) map to Serial1
 // So that's where the receiver needs to be wired up
 
-#define HEADING_LED_PIN 16 // To heading LED (pin 13 is on-board Arduino LED)
+#define HEADING_LED_PIN0 16 // extra led
+#define HEADING_LED_PIN1 13 // on arduino led
+#define HEADING_LED_PIN2 30 // on arduino led
 
 // no configuration changes are needed if only 1 motor is used!
 #define MOTOR_PIN1 9  // Pin for Motor 1 driver

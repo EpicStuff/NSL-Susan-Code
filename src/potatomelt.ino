@@ -51,12 +51,22 @@ static void wait_for_rc_good_and_zero_throttle() {
 void setup() {
   Serial.begin(115200);
 
+<<<<<<< HEAD:potatomelt/potatomelt.ino
   // Sleep to give time to open serial monitor
   for (int seconds_left = 10; seconds_left > 0; --seconds_left) {
     Serial.print("Start Delay: ");
     Serial.println(seconds_left);
     delay(1000);  // Sleep for 1 second
   }
+=======
+	// Sleep to give time to open serial monitor
+	for (int seconds_left = START_DELAY; seconds_left > 0; --seconds_left)
+	{
+		Serial.print("Start Delay: ");
+		Serial.println(seconds_left);
+		delay(1000); // Sleep for 1 second
+	}
+>>>>>>> main:src/potatomelt.ino
 
   // get motor drivers setup (and off!) first thing
   init_motors();
@@ -124,12 +134,21 @@ static void echo_diagnostics() {
   Serial.print(get_battery_voltage());
 #endif
 
+<<<<<<< HEAD:potatomelt/potatomelt.ino
 #ifdef ENABLE_EEPROM_STORAGE
   Serial.print("  Heading Offset: ");
   Serial.print(load_heading_led_offset());
   Serial.print("  Zero G Offset: ");
   Serial.print(load_accel_zero_g_offset());
 #endif
+=======
+	// #ifdef ENABLE_EEPROM_STORAGE
+	// 	Serial.print("  Heading Offset: ");
+	// 	Serial.print(load_heading_led_offset());
+	// 	Serial.print("  Zero G Offset: ");
+	// 	Serial.print(load_accel_zero_g_offset());
+	// #endif
+>>>>>>> main:src/potatomelt.ino
 
   Serial.print("  Config Mode: ");
   Serial.print(get_config_mode());
@@ -194,6 +213,7 @@ static void check_accel_config_clear() {
 }
 
 // handles the bot when not spinning (with RC good)
+<<<<<<< HEAD:potatomelt/potatomelt.ino
 static void handle_bot_idle() {
   Serial.println("Bot is idle");
   disable_spin();  // assure motors are off
@@ -202,6 +222,17 @@ static void handle_bot_idle() {
   delay(30);
   heading_led_off();
   delay(120);
+=======
+static void handle_bot_idle()
+{
+	// Serial.println("Bot is idle");
+	disable_spin(); // assure motors are off
+	// normal LED "fast flash" - indicates RC signal is good while sitting idle
+	heading_led_on(0);
+	delay(30);
+	heading_led_off();
+	delay(120);
+>>>>>>> main:src/potatomelt.ino
 
   // if in config mode blip LED again to show "double-flash"
   if (get_config_mode() == true) {
@@ -213,12 +244,21 @@ static void handle_bot_idle() {
     delay(140);
   }
 
+<<<<<<< HEAD:potatomelt/potatomelt.ino
   Serial.println("Checking config mode");
   check_config_mode();  // check if user requests we enter / exit config mode
   Serial.println("Checking accel config clear");
   check_accel_config_clear();
   Serial.println("Displaying RPM if requested");
   display_rpm_if_requested();  // flashed out RPM if user has requested
+=======
+	// Serial.println("Checking config mode");
+	check_config_mode(); // check if user requests we enter / exit config mode
+	// Serial.println("Checking accel config clear");
+	check_accel_config_clear();
+	// Serial.println("Displaying RPM if requested");
+	display_rpm_if_requested(); // flashed out RPM if user has requested
+>>>>>>> main:src/potatomelt.ino
 }
 
 static void handle_battery_crit() {

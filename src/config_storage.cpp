@@ -42,6 +42,7 @@
 // indicates values saved to EEPROM (doing 2x)
 static void eeprom_write_sentinel()
 {
+	Serial.println("writing sentinel");
 	EEPROM.write(EEPROM_WRITTEN_SENTINEL_BYTE1_LOC, EEPROM_WRITTEN_SENTINEL1_VALUE);
 	EEPROM.write(EEPROM_WRITTEN_SENTINEL_BYTE2_LOC, EEPROM_WRITTEN_SENTINEL2_VALUE);
 }
@@ -50,16 +51,20 @@ static void eeprom_write_sentinel()
 // if EEPROM_WRITTEN_SENTINEL_VALUE is changed - will cause EEPROM values to invalidate / use default values
 static int check_sentinel()
 {
+	Serial.println("checking sentinel");
 	int byte1Val = EEPROM.read(EEPROM_WRITTEN_SENTINEL_BYTE1_LOC);
 	int byte2Val = EEPROM.read(EEPROM_WRITTEN_SENTINEL_BYTE2_LOC);
-	if (byte1Val != EEPROM_WRITTEN_SENTINEL1_VALUE) {
-		Serial.print("SENTINEL1_VALUE: ");
-		Serial.println(byte1Val);
+	Serial.print("SENTINEL1_VALUE: ");
+	Serial.println(byte1Val);
+	Serial.print("SENTINEL2_VALUE: ");
+	Serial.println(byte2Val);
+
+	if (byte1Val != EEPROM_WRITTEN_SENTINEL1_VALUE)
+	{
 		return 0;
 	}
-	if (byte2Val != EEPROM_WRITTEN_SENTINEL2_VALUE) {
-		Serial.print("SENTINEL2_VALUE: ");
-		Serial.println(byte2Val);
+	if (byte2Val != EEPROM_WRITTEN_SENTINEL2_VALUE)
+	{
 		return 0;
 	}
 	return 1;
@@ -76,17 +81,18 @@ int load_correction_table(float *table)
 			table[i] = 0;
 		}
 		save_correction_table(table); // save default empty table
+		eeprom_write_sentinel();
 		return 14;
 	}
 
-	int len = EEPROM.read(EEPROM_RPM_CORRECTION_LENGTH_LOC);
+	uint8_t len = EEPROM.read(EEPROM_RPM_CORRECTION_LENGTH_LOC);
 
 	for (int i = 0; i < 16; i++)
 	{
-		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;
+		int addr = (EEPROM_RPM_CORRECTION_BYTE1_LOC + i) * 4;
 		table[i] = EEPROM.get(addr, table[i]);
 		Serial.print("\nLoadCorrectionTable: ");
-		Serial.print(table[i]);
+		Serial.print(table[i], 8);
 		Serial.print(", address: ");
 		Serial.print(addr);
 	}
@@ -97,10 +103,10 @@ void save_correction_table(float *table) // deleted int length argument
 	Serial.println("saving correction table");
 	for (int i = 0; i < 16; i++)
 	{
-		int addr = EEPROM_RPM_CORRECTION_BYTE1_LOC + i * 4;
-		EEPROM.write(addr, table[i]);
+		int addr = (EEPROM_RPM_CORRECTION_BYTE1_LOC + i) * 4;
+		EEPROM.put(addr, table[i]);
 		Serial.print("\nSaveCorrectionTable: ");
-		Serial.print(table[i]);
+		Serial.print(table[i], 8);
 		Serial.print(", address: ");
 		Serial.print(addr);
 	}
@@ -112,6 +118,8 @@ int load_heading_led_offset()
 	// if value hasn't been saved previously - return the default
 	if (check_sentinel() != 1)
 		return DEFAULT_LED_OFFSET_PERCENT;
+	Serial.print("Led offset loaded: ");
+	Serial.println(EEPROM.read(EEPROM_HEADING_LED_LOC));
 	return EEPROM.read(EEPROM_HEADING_LED_LOC);
 }
 
@@ -132,7 +140,7 @@ float load_accel_zero_g_offset()
 
 void save_accel_zero_g_offset(float offset)
 {
-	EEPROM.write(EEPROM_ACCEL_OFFSET_BYTE1_LOC, offset);
+	EEPROM.put(EEPROM_ACCEL_OFFSET_BYTE1_LOC, offset);
 }
 
 float load_accel_mount_radius()
