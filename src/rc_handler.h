@@ -21,6 +21,9 @@ int rc_get_throttle_perk();
 // returns (-512,512) value indicating displacement of drive stick forback
 int rc_get_forback_trans();
 
+// returns (-512,512) value indicating displacement of drive stick left right
+int rc_get_leftright_trans();
+
 // returns RC_FORBACK_FORWARD, RC_FORBACK_NEUTRAL or RC_FORBACK_BACKWARD depending on stick position
 rc_forback rc_get_forback_bit();
 
@@ -49,7 +52,7 @@ float rc_get_trans_trim();
 #define RC_CHANNEL_TURN 0	  // Logical turning - usually left-right on the right stick
 #define RC_CHANNEL_FORBACK 1  // Translate forwards or backwards - usually forwards-backwards on the right stick
 #define RC_CHANNEL_THROTTLE 2 // Spin RPM - usually forwards-backwards on the left stick
-// reserved                                 // RC channel 3 is reserved for future sideways translation
+#define RC_CHANNEL_SIDEMOVE 3 // RC channel 3 is reserved for future sideways translation
 #define RC_CHANNEL_TANKMODE 4		   // Tank mode switch - usually a switch, <0 for melty mode, >0 for tank mode
 #define RC_CHANNEL_ACCEL_OFFSET_SAVE 5 // Button for saving an accelerometer offset in config mode - <0 normally, >0 when pressed
 #define RC_CHANNEL_SPIN_DIR 6		   // Spin direction switch - runs motors forwards when >0, backwards when <0. Does not adjust heading LED offsets - useful when ESCs are wired backwards

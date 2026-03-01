@@ -77,6 +77,13 @@ int rc_get_forback_trans()
 	return stick_position - CENTER_FORBACK_PULSE_LENGTH;
 }
 
+// Returns -512 -> 512 for the right-left axis
+int rc_get_leftback_trans()
+{
+	int stick_position = IBus.readChannel(RC_CHANNEL_SIDEMOVE);
+	return stick_position - CENTER_LEFTRIGHT_PULSE_LENGTH;
+}
+
 // returns offset in microseconds from center value (not converted to percentage)
 // 0 for hypothetical perfect center (reality is probably +/-50)
 // returns negative value for left / positive value for right
