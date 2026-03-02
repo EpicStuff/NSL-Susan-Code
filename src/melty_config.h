@@ -62,10 +62,10 @@
 #define BATTERY_ADC_PIN A0 // Pin for battery monitor (if enabled)
 
 //----------BATTERY MONITOR----------
-// #define BATTERY_ALERT_ENABLED				  // if enabled - heading LED will flicker when battery voltage is low
+#define BATTERY_ALERT_ENABLED				  // if enabled - heading LED will flicker when battery voltage is low
 // #define BATTERY_CRIT_HALT_ENABLED			  // if enabled - robot will halt when battery voltage is critically low
 #define VOLTAGE_DIVIDER 11						  // (~10:1 works well - 10kohm to GND, 100kohm to Bat+).  Resistors have tolerances!  Adjust as needed...
-#define BATTERY_CELL_COUNT 3					  // How many cells are in the battery? This will multiply the thresholds
+#define BATTERY_CELL_COUNT 4					  // How many cells are in the battery? This will multiply the thresholds
 #define BATTERY_ADC_WARN_VOLTAGE_THRESHOLD 3.75f  // If voltage per cell drops below this value - then alert is triggered
 #define BATTERY_ADC_HALT_VOLTAGE_THRESHOLD 3.6f	  // If voltage per cell drops below _this_ value, stop the robot
 #define BATTERY_UNPLUGGED_VOLTAGE_THRESHOLD 5.25f // On the other hand, if we're seeing 5v or slightly above, odds are that there isn't a battery plugged in, and we're backfeeding usb line voltage. Don't alarm.
