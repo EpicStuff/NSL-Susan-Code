@@ -412,10 +412,20 @@ ISR(TIMER3_COMPA_vect)
 	if (time_spent_this_rotation_us >= melty_parameters.motor_start_phase_1 && time_spent_this_rotation_us <= melty_parameters.motor_start_phase_2)
 	{
 		motors_on_direct(melty_parameters.throttle_high_dshot, melty_parameters.throttle_low_dshot);
+		Serial.println("CASE 1");
+		Serial.print("Throttle High DSHOT: ");
+		Serial.println(melty_parameters.throttle_high_dshot);
+		Serial.print("Throttle Low DSHOT: ");
+		Serial.println(melty_parameters.throttle_low_dshot);
 	}
 	else
 	{
 		motors_on_direct(melty_parameters.throttle_low_dshot, melty_parameters.throttle_high_dshot);
+		Serial.println("CASE 2");
+		Serial.print("Throttle High DSHOT: ");
+		Serial.println(melty_parameters.throttle_high_dshot);
+		Serial.print("Throttle Low DSHOT: ");
+		Serial.println(melty_parameters.throttle_low_dshot);
 	}
 
 	// displays heading LED at correct location
