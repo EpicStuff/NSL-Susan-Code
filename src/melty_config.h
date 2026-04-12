@@ -12,6 +12,13 @@
 // #define JUST_DO_DIAGNOSTIC_LOOP        			// Disables the robot / just displays config / battery voltage / RC info via serial
 #define START_DELAY 10 // start delay
 
+//----------FAKE ACCELEROMETER (for testing without hardware)----------
+// When enabled, skips I2C accelerometer init and returns a fixed G value instead of real sensor data
+// G = RPM^2 * ACCEL_MOUNT_RADIUS_CM / 89445
+// Examples at 6cm radius: 400 RPM -> ~10.8G, 1000 RPM -> ~67.1G, 2000 RPM -> ~268G
+// #define FAKE_ACCEL
+#define FAKE_ACCEL_G 67.1f // ~1000 RPM at 6cm radius
+
 //----------EEPROM----------
 #define ENABLE_EEPROM_STORAGE				   // Comment out this to disable EEPROM (for ARM)
 #define EEPROM_WRITTEN_SENTINEL_VALUE (byte)02 // Changing this value will cause existing EEPROM values to be invalidated (revert to defaults)

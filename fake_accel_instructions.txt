@@ -1,0 +1,65 @@
+FAKE ACCELEROMETER - INSTRUCTIONS
+==================================
+
+Purpose: Allows testing the melty-brain control loop without a physical
+accelerometer connected. The robot will behave as if it is spinning at a
+fixed RPM set by you.
+
+
+HOW TO ENABLE
+-------------
+In src/melty_config.h, find this line:
+
+    // #define FAKE_ACCEL
+
+Remove the "//" to uncomment it:
+
+    #define FAKE_ACCEL
+
+Rebuild and flash. The serial monitor will print:
+"FAKE_ACCEL enabled - skipping accelerometer hardware init"
+
+
+HOW TO DISABLE
+--------------
+In src/melty_config.h, add "//" back to comment it out:
+
+    // #define FAKE_ACCEL
+
+Rebuild and flash. The real accelerometer will be used again.
+
+
+HOW TO CHANGE THE FAKE RPM
+---------------------------
+In src/melty_config.h, find this line:
+
+    #define FAKE_ACCEL_G 67.1f
+
+Change the number to target a different RPM using this formula:
+
+    G = RPM^2 * ACCEL_MOUNT_RADIUS_CM / 89445
+
+The default radius is set by DEFAULT_ACCEL_MOUNT_RADIUS_CM (6 cm).
+
+Quick reference at 6 cm radius:
+    400 RPM  ->  10.8 G
+    600 RPM  ->  24.2 G
+    800 RPM  ->  43.0 G
+    1000 RPM ->  67.1 G
+    1500 RPM -> 150.9 G
+    2000 RPM -> 268.3 G
+    3000 RPM -> 603.7 G
+
+Example - to fake 800 RPM:
+
+    #define FAKE_ACCEL_G 43.0f
+
+
+NOTES
+-----
+- FAKE_ACCEL only affects the accelerometer reading. All other systems
+  (RC input, motors, LED, PID, translation) run normally.
+- The PID will still try to chase the target RPM set by the throttle
+  stick, but since the fake G value is fixed it will never actually
+  change - so the PID output will drift. This is expected.
+- Make sure FAKE_ACCEL is disabled before running on the real robot.

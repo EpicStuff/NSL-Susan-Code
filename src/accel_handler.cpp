@@ -42,6 +42,11 @@ void init_accel()
 	correction_table_length = load_correction_table(correction_lookup_table);
 #endif
 
+#ifdef FAKE_ACCEL
+	Serial.println("FAKE_ACCEL enabled - skipping accelerometer hardware init");
+	return;
+#endif
+
 	Wire.begin();
 
 	Wire.setClock(400000); // increase I2C speed to reduce read times a bit
@@ -60,6 +65,9 @@ void init_accel()
 // ACCEL_MAX_SCALE needs to match ACCEL_RANGE value
 float get_accel_force_g()
 {
+#ifdef FAKE_ACCEL
+	return FAKE_ACCEL_G;
+#endif
 	int16_t x, y, z;
 	xl.readAxes(x, y, z);
 	return xl.convertToG(ACCEL_MAX_SCALE, y);
