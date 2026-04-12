@@ -45,6 +45,9 @@ bool rc_get_accel_save();
 // translate
 float rc_get_trans_trim();
 
+// Prints receiver (?)
+void print_receiver();
+
 // Channel assignments
 // Note that the first channel is 0 in Ibus.cpp, while most controllers start at
 // channel 1 So channel 0 here is channel 1 on the controller, and so on

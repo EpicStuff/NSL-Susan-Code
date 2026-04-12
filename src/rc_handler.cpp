@@ -116,6 +116,7 @@ unsigned long compute_checksum() {
          IBus.readChannel(2) * 4 + IBus.readChannel(3);
 }
 
+// Prints receiver (?)
 void print_receiver() {
   Serial.print("Receiver: ");
   Serial.println(compute_checksum());
