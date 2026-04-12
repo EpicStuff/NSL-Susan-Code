@@ -10,13 +10,13 @@
 
 //----------DIAGNOSTICS----------
 // #define JUST_DO_DIAGNOSTIC_LOOP        			// Disables the robot / just displays config / battery voltage / RC info via serial
-#define START_DELAY 10 // start delay
+#define START_DELAY 2 // start delay
 
 //----------FAKE ACCELEROMETER (for testing without hardware)----------
 // When enabled, skips I2C accelerometer init and returns a fixed G value instead of real sensor data
 // G = RPM^2 * ACCEL_MOUNT_RADIUS_CM / 89445
 // Examples at 6cm radius: 400 RPM -> ~10.8G, 1000 RPM -> ~67.1G, 2000 RPM -> ~268G
-// #define FAKE_ACCEL
+#define FAKE_ACCEL
 #define FAKE_ACCEL_G 67.1f // ~1000 RPM at 6cm radius
 
 //----------EEPROM----------
@@ -45,9 +45,9 @@
 //-----------PID tuning--------------
 // Tuning PIDs is an art. See: https://pidexplained.com/how-to-tune-a-pid-controller/
 
-#define PID_KP 0.3 // Proportional Gain - higher values give more sensitivity, lower values give more stability
-#define PID_KI 0.2 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
-#define PID_KD 0.1 // Derivative - useful to prevent overshoot of target value.
+#define PID_KP 0.10 // Proportional Gain - higher values give more sensitivity, lower values give more stability
+#define PID_KI 0.01 // Integral - damping on the rebound curves. Lower values = slower to respond, but less bounces
+#define PID_KD 0.005 // Derivative - useful to prevent overshoot of target value.
 
 //------------TRANSLATIONAL DRIFT SETTINGS-----------
 #define LEFT_RIGHT_HEADING_CONTROL_DIVISOR 2.0f // How quick steering is (larger values = slower)

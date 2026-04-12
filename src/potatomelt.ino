@@ -28,8 +28,6 @@ void service_watchdog() {
 #endif
 }
 
-IBusBM IBus;
-
 // loops until a good RC signal is detected and throttle is zero (assures safe
 // start)
 static void wait_for_rc_good_and_zero_throttle() {
@@ -134,7 +132,7 @@ static void echo_diagnostics() {
 
   Serial.print("  Config Mode: ");
   Serial.print(get_config_mode());
-  Serial.println("");
+  Serial.print("");
 }
 
 // Used to flash out max recorded RPM 100's of RPMs
@@ -247,7 +245,7 @@ static void handle_battery_crit() {
 // main control loop
 void loop() {
   echo_diagnostics();
-  print_receiver();
+  print_motor_diagnostic();
   // keep the watchdog happy
   service_watchdog();
 
@@ -284,7 +282,7 @@ void loop() {
 #endif
 
   // if RC is good - and throtte is above 0 - spin a single rotation
-  if (rc_get_throttle_perk() > 0) {
+  if (rc_get_throttle_perk() >= 0) {
     // this is where all the motor control happens!  (see spin_control.cpp)
     enable_spin();
     spin_one_iteration();

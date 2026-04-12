@@ -29,6 +29,9 @@ void init_spin_timer();
 // sets up the PID controller - most notably, sets the output limits to (0, 1023);
 void init_pid();
 
+// used for debugging
+void print_motor_diagnostic();
+
 // holds melty parameters used to determine timing for current spin cycle
 // all time offsets are in microseconds
 
@@ -37,6 +40,8 @@ typedef struct melty_parameters_t
 	bool spin_enabled;					// Authorization for the hot loop to spin
 	int translation_enabled;			// Authorization for the spinning bot to translate
 	int throttle_perk;					// stores throttle out of 0-1024
+	int throttle_high_perk;				// for debugging
+	int throttle_low_perk;				// for debugging
 	int throttle_high_dshot;			// for translation, the approaching wheel power, as dshot expects it
 	int throttle_low_dshot;				// for translation, the receeding wheel power, as dshot expects it
 	unsigned long rotation_interval_us; // time for 1 rotation of robot

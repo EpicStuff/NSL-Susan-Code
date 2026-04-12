@@ -308,16 +308,16 @@ static void get_melty_parameters(melty_parameters_t *melty_parameters)
 	// So then in the hot loop we can just spam the known codes
 	float trans_trim = rc_get_trans_trim();
 
-	int throttle_high_perk = min(throttle_perk + (melty_parameters->translation_enabled * translate_disp * throttle_perk * trans_trim / 1024), 1023);
-	int throttle_low_perk = max(throttle_perk - (melty_parameters->translation_enabled * translate_disp * throttle_perk * trans_trim / 1024), 0);
+	melty_parameters->throttle_high_perk = min(throttle_perk + (melty_parameters->translation_enabled * translate_disp * throttle_perk * trans_trim / 1024), 1023);
+	melty_parameters->throttle_low_perk = max(throttle_perk - (melty_parameters->translation_enabled * translate_disp * throttle_perk * trans_trim / 1024), 0);
 
 	int motor_dir = rc_get_spin_dir();
 
-	throttle_high_perk *= motor_dir;
-	throttle_low_perk *= motor_dir;
+	melty_parameters->throttle_high_perk *= motor_dir;
+	melty_parameters->throttle_low_perk *= motor_dir;
 
-	melty_parameters->throttle_high_dshot = perk2dshot(throttle_high_perk);
-	melty_parameters->throttle_low_dshot = perk2dshot(throttle_low_perk);
+	melty_parameters->throttle_high_dshot = perk2dshot(melty_parameters->throttle_high_perk);
+	melty_parameters->throttle_low_dshot = perk2dshot(melty_parameters->throttle_low_perk);
 
 	// if the battery voltage is low - shimmer the LED to let user know
 #ifdef BATTERY_ALERT_ENABLED
@@ -388,6 +388,17 @@ void spin_one_iteration(void)
 {
 	get_melty_parameters(&melty_parameters);
 	delay(20);
+}
+
+void print_motor_diagnostic() {
+	// Serial.print("  motor high perk: ");
+	// Serial.print(melty_parameters.throttle_high_perk);
+	Serial.print("  motor high dshot: ");
+	Serial.print(melty_parameters.throttle_high_dshot);
+	// Serial.print("  motor low perk: ");
+	// Serial.print(melty_parameters.throttle_low_perk);
+	Serial.print("  motor low dshot: ");
+	Serial.println(melty_parameters.throttle_low_dshot);
 }
 
 // The hot loop
