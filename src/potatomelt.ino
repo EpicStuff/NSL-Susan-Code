@@ -28,7 +28,6 @@ void service_watchdog() {
 #endif
 }
 
-IBusBM IBus;
 
 // loops until a good RC signal is detected and throttle is zero (assures safe
 // start)
